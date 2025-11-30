@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CeilingNumber {
+public class FloorNumber {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -18,44 +18,39 @@ public class CeilingNumber {
         System.out.println("Enter the target element that can be Searched:");
         int target = sc.nextInt();
 
-        int result = Ceilnumber(arr,target);
+        int result = Floornumber(arr,target);
 
-        if (result == -1) {
+        if (result >= arr.length) {
             System.out.println("Ceiling does not exist");
         } else {
             System.out.println("Ceiling found at index " + result +
                     " Number: " + arr[result]);
         }
-
-
-
     }
 
-    static  int Ceilnumber (int[] arr, int target){
 
-        if(target>arr[arr.length-1]){
-            return -1;
+    static  int Floornumber (int[] arr, int target){
+
+        int  start = 0;
+        int   end = arr.length-1;
+
+        while(start<= end){
+
+            int mid = (start+end)/2;
+
+            if (arr[mid]==target){
+                return mid;
+            } else if (arr[mid]<target) {
+                start = mid + 1;
+            }else{
+                end = end -1;
+            }
+
+
         }
-       int  start = 0;
-      int   end = arr.length-1;
-
-      while(start<= end){
-
-          int mid = (start+end)/2;
-
-          if (arr[mid]==target){
-              return mid;
-          } else if (arr[mid]<target) {
-              start = mid + 1;
-          }else{
-              end = mid -1;
-          }
 
 
-      }
-
-
-       return start;
+        return end;
 
     }
 }
